@@ -1,5 +1,9 @@
 <div class="container py-5">
-  <app-form-customer [isEdit]="isEdit" [customer]="person"></app-form-customer>
+  <app-form-customer
+    [isEdit]="isEdit"
+    [customer]="person"
+    (updated)="updateCustomer($event)">
+  </app-form-customer>
   <h3>Users</h3>
   <form action="" class="form p-3 mt-3">
     <div class="form-group">

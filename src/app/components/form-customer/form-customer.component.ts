@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Customer } from 'src/app/models/customer.model';
 
@@ -11,6 +11,7 @@ export class FormCustomerComponent implements OnInit, OnChanges {
   formCustomer: FormGroup;
   @Input() isEdit: boolean;
   @Input() customer: Customer;
+  @Output() updated: EventEmitter<Customer> = new EventEmitter();
 
   constructor(private builder: FormBuilder) {}
 
@@ -38,6 +39,6 @@ export class FormCustomerComponent implements OnInit, OnChanges {
   }
 
   updateCustomer() {
-
+    this.updated.emit(this.formCustomer.value);
   }
 }

@@ -3,7 +3,7 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { AppState } from './store';
-import { loadCustomers } from './store/actions/customer.actions';
+import { loadCustomers, updatedCustomer } from './store/actions/customer.actions';
 import { CustomerState } from './store/reducers/app.reducer';
 import { getState, getCustomersState, getCustomerById } from './store/reducers/index';
 import { Customer } from './models/customer.model';
@@ -11,14 +11,16 @@ import { Customer } from './models/customer.model';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-
 export class AppComponent implements OnInit {
   customers$: Observable<CustomerState>;
   isEdit: boolean = false;
   person: Customer = {
-    name: '', age: null, email: '', id: null
+    name: '',
+    age: null,
+    email: '',
+    id: null,
   };
 
   constructor(private store: Store<AppState>) {
@@ -37,5 +39,9 @@ export class AppComponent implements OnInit {
   editCustomer(customer: Customer) {
     this.isEdit = true;
     this.person = { ...customer };
+  }
+
+  updateCustomer(customer: Customer) {
+    this.store.dispatch(updatedCustomer(customer));
   }
 }

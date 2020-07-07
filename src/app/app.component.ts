@@ -6,6 +6,7 @@ import { AppState } from './store';
 import { loadCustomers } from './store/actions/customer.actions';
 import { CustomerState } from './store/reducers/app.reducer';
 import { getState, getCustomersState, getCustomerById } from './store/reducers/index';
+import { Customer } from './models/customer.model';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,10 @@ import { getState, getCustomersState, getCustomerById } from './store/reducers/i
 
 export class AppComponent implements OnInit {
   customers$: Observable<CustomerState>;
+  isEdit: boolean = false;
+  person: Customer = {
+    name: '', age: null, email: '', id: null
+  };
 
   constructor(private store: Store<AppState>) {
     this.customers$ = store.pipe(select('customers'));
@@ -27,5 +32,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(loadCustomers());
+  }
+
+  editCustomer(customer: Customer) {
+    this.isEdit = true;
+    this.person = { ...customer };
   }
 }

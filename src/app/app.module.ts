@@ -10,10 +10,12 @@ import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { reducers, effects } from './store';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormCustomerComponent } from './components/form-customer/form-customer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    FormCustomerComponent,
   ],
   imports: [
     BrowserModule,

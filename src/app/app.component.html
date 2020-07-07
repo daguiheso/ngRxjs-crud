@@ -1,5 +1,5 @@
 <div class="container py-5">
-  <app-form-customer></app-form-customer>
+  <app-form-customer [isEdit]="isEdit" [customer]="person"></app-form-customer>
   <h3>Users</h3>
   <form action="" class="form p-3 mt-3">
     <div class="form-group">
@@ -28,7 +28,7 @@
           <button class="btn btn-danger fas fa-trash-alt"></button>
         </td>
         <td>
-          <button class="btn btn-primary fa fa-edit"></button>
+          <button class="btn btn-primary fa fa-edit" (click)="editCustomer(customer)"></button>
         </td>
       </tr>
     </tbody>

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { AppState } from './store';
 import { Observable } from 'rxjs';
-import { CustomerService } from './services/customer.service';
+
+import { AppState } from './store';
+import { loadCustomers } from './store/actions/customer.actions';
+import { CustomerState } from './store/reducers/app.reducer';
 
 @Component({
   selector: 'app-root',
@@ -11,16 +13,13 @@ import { CustomerService } from './services/customer.service';
 })
 
 export class AppComponent implements OnInit {
-  customers$: Observable<any>;
+  customers$: Observable<CustomerState>;
 
-  constructor(
-    private store: Store<AppState>,
-    private customerService: CustomerService
-  ) {
+  constructor(private store: Store<AppState>) {
     this.customers$ = store.pipe(select('customers'));
   }
 
   ngOnInit() {
-    this.customerService.getCustomers().subscribe(res => console.log(res));
+    this.store.dispatch(loadCustomers());
   }
 }

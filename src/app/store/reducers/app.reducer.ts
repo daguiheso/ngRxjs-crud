@@ -40,3 +40,9 @@ const _customerReducer = createReducer(
 export function customerReducer(state: CustomerState, action: Action) {
   return _customerReducer(state, action);
 }
+
+
+export const getCustomers = (state: CustomerState) => state.data;
+export const getCustomersLoaded = (state: CustomerState) => state.loaded;
+export const getCustomersLoading = (state: CustomerState) => state.loading;
+export const getCustomersError = (state: CustomerState) => state.error;

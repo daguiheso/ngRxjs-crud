@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { AppState } from './store';
 import { loadCustomers } from './store/actions/customer.actions';
 import { CustomerState } from './store/reducers/app.reducer';
+import { getState, getCustomersState, getCustomerById } from './store/reducers/index';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,11 @@ export class AppComponent implements OnInit {
 
   constructor(private store: Store<AppState>) {
     this.customers$ = store.pipe(select('customers'));
+
+    // use selector
+    // store.pipe(select(getCustomerById(7))).subscribe((res) => {
+    //   console.log(res);
+    // });
   }
 
   ngOnInit() {

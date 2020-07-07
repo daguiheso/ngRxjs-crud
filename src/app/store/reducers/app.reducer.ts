@@ -1,6 +1,6 @@
-import { State, createReducer, on, Action } from '@ngrx/store';
+import { createReducer, on, Action } from '@ngrx/store';
 import { Customer } from '../../models/customer.model';
-import { loadCustomers } from '../actions';
+import { loadCustomers, loadCustomersSuccess, loadCustomersFail } from '../actions';
 
 export interface CustomerState {
   data: Customer[];
@@ -10,20 +10,7 @@ export interface CustomerState {
 }
 
 export const initialState: CustomerState = {
-  data: [
-    {
-      id: 1,
-      name: 'Luis',
-      age: 20,
-      email: 'pepe@gmail.com',
-    },
-    {
-      id: 2,
-      name: 'Daniel H',
-      age: 22,
-      email: 'pepe3@gmail.com',
-    },
-  ],
+  data: [],
   loaded: false,
   loading: false,
   error: null,
@@ -32,8 +19,24 @@ export const initialState: CustomerState = {
 const _customerReducer = createReducer(
   initialState,
   on(loadCustomers, (state) => ({...state, loading: true})),
+  on(loadCustomersSuccess, (state, { customers }) => {
+    return {
+      ...state,
+      loading: false,
+      loaded: true,
+      data: customers,
+    };
+  }),
+  on(loadCustomersFail, (state, error) => {
+    return {
+      ...state,
+      loading: false,
+      loaded: false,
+      error
+    };
+  }),
 );
 
-export function customerReducer(state, action: Action) {
+export function customerReducer(state: CustomerState, action: Action) {
   return _customerReducer(state, action);
 }

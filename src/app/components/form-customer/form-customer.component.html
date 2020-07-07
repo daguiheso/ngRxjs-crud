@@ -1,0 +1,21 @@
+
+<h3>Add Customer</h3>
+
+<form [formGroup]="formCustomer">
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder='Enter a name' formControlName="name" name="name">
+  </div>
+  <div class="form-group">
+    <input type="number" class="form-control" placeholder='Enter your age' formControlName="age" name="age">
+  </div>
+  <div class="form-group">
+    <input type="email" class="form-control" placeholder='Enter your email' formControlName="email" name="email">
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" formControlName="id" name="id" hidden>
+  </div>
+  <div class="form-group">
+    <input *ngIf="!isEdit" type="button" class="btn btn-primary" (click)="addCustomer()" value='Add Client'>
+    <input *ngIf="isEdit" type="button" class="btn btn-success" (click)="updateCustomer()" value='Update'>
+  </div>
+</form>

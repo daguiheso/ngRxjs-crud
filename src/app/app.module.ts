@@ -11,11 +11,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { reducers, effects } from './store';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormCustomerComponent } from './components/form-customer/form-customer.component';
+import { ListCustomersComponent } from './components/list-customers/list-customers.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormCustomerComponent,
+    ListCustomersComponent,
   ],
   imports: [
     BrowserModule,

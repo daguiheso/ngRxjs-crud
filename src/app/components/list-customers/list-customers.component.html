@@ -1,0 +1,24 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Email</th>
+      <th>Remove</th>
+      <th>Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let customer of data">
+      <td>{{customer.name}}</td>
+      <td>{{customer.age}}</td>
+      <td>{{customer.email}}</td>
+      <td>
+        <button class="btn btn-danger fas fa-trash-alt"></button>
+      </td>
+      <td>
+        <button class="btn btn-primary fa fa-edit" (click)="editCustomer(customer)"></button>
+      </td>
+    </tr>
+  </tbody>
+</table>

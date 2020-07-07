@@ -34,6 +34,6 @@ const _customerReducer = createReducer(
   on(loadCustomers, (state) => ({...state, loading: true})),
 );
 
-export function customerReducer(state: State<CustomerState>, action: Action) {
+export function customerReducer(state, action: Action) {
   return _customerReducer(state, action);
 }

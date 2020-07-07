@@ -1,4 +1,37 @@
-<div class="container">
+<div class="container py-5">
   <h1>Users</h1>
+  <form action="" class="form p-3 mt-3">
+    <div class="form-group">
+      <div class="input-group pl-2 w-100">
+        <input id="filter" type="text" name="text" placeholder="Search">
+        <i id="filterIcon" class="fa fa-search"></i>
+      </div>
+    </div>
+  </form>
+  <table class="table table-striped" *ngIf="customers$ as customers">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Remove</th>
+        <th>Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of (customers | async)?.data">
+        <td>{{customer.name}}</td>
+        <td>{{customer.age}}</td>
+        <td>{{customer.email}}</td>
+        <td>
+          <button class="btn btn-danger fas fa-trash-alt"></button>
+        </td>
+        <td>
+          <button class="btn btn-primary fa fa-edit"></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
+
 <router-outlet></router-outlet>
